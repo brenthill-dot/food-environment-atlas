@@ -1,3 +1,6 @@
 *.log
 .env
 .DS_Store
+__pycache__/
+*.py[cod]
+data/cbp_2023_county_business_patterns.csv
