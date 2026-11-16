@@ -1,0 +1,305 @@
+category_name,category_code,subcategory_name,variable_name,variable_code,units
+Access and Proximity to Foodstore,ACCESS,Overall,"Population, low access to store, 2015",LACCESS_POP15,Count
+Access and Proximity to Foodstore,ACCESS,Overall,"Population, low access to store, 2019",LACCESS_POP19,Count
+Access and Proximity to Foodstore,ACCESS,Overall,"Population, low access to store (% change), 2015 -19",PCH_LACCESS_POP_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Overall,"Population, low access to store (%), 2015",PCT_LACCESS_POP15,Percent
+Access and Proximity to Foodstore,ACCESS,Overall,"Population, low access to store (%), 2019",PCT_LACCESS_POP19,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Low income & low access to store, 2015",LACCESS_LOWI15,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Low income & low access to store, 2019",LACCESS_LOWI19,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Low income & low access to store (% change), 2015 - 19",PCH_LACCESS_LOWI_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Low income & low access to store (%), 2015",PCT_LACCESS_LOWI15,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Low income & low access to store (%), 2019",PCT_LACCESS_LOWI19,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Households, no car & low access to store, 2015",LACCESS_HHNV15,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Households, no car & low access to store, 2019",LACCESS_HHNV19,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Households, no car & low access to store (% change), 2015 - 19",PCH_LACCESS_HHNV_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Households, no car & low access to store (%), 2015",PCT_LACCESS_HHNV15,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"Households, no car & low access to store (%), 2019",PCT_LACCESS_HHNV19,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"SNAP households, low access to store, 2015",LACCESS_SNAP15,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"SNAP households, low access to store, 2019",LACCESS_SNAP19,Count
+Access and Proximity to Foodstore,ACCESS,Household Resources,"SNAP households, low access to store (% change), 2015 - 19",PCH_LACCESS_SNAP_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Household Resources,"SNAP households, low access to store (%), 2015",PCT_LACCESS_SNAP15,Percent
+Access and Proximity to Foodstore,ACCESS,Household Resources,"SNAP households, low access to store (%), 2019",PCT_LACCESS_SNAP19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Children, low access to store, 2015",LACCESS_CHILD15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Children, low access to store, 2019",LACCESS_CHILD19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Children, low access to store (% change), 2015 - 19",PCH_LACCESS_CHILD_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Children, low access to store (%), 2015",PCT_LACCESS_CHILD15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Children, low access to store (%), 2019",PCT_LACCESS_CHILD19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Seniors, low access to store, 2015",LACCESS_SENIORS15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Seniors, low access to store, 2019",LACCESS_SENIORS19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Seniors, low access to store (% change), 2015 -19",PCH_LACCESS_SENIORS_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Seniors, low access to store (%), 2015",PCT_LACCESS_SENIORS15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Seniors, low access to store (%), 2019",PCT_LACCESS_SENIORS19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"White, low access to store, 2015",LACCESS_WHITE15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"White, low access to store, 2019",LACCESS_WHITE19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"White, low access to store (% change), 2015 -19",PCH_LACCESS_WHITE_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"White, low access to store (%), 2015",PCT_LACCESS_WHITE15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"White, low access to store (%), 2019",PCT_LACCESS_WHITE19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Black, low access to store, 2015",LACCESS_BLACK15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Black, low access to store, 2019",LACCESS_BLACK19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Black, low access to store (% change), 2015 -19",PCH_LACCESS_BLACK_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Black, low access to store (%), 2015",PCT_LACCESS_BLACK15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Black, low access to store (%), 2019",PCT_LACCESS_BLACK19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hispanic ethnicity, low access to store, 2015",LACCESS_HISP15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hispanic ethnicity, low access to store, 2019",LACCESS_HISP19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hispanic ethnicity, low access to store (% change), 2015 -19",PCH_LACCESS_HISP_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hispanic ethnicity, low access to store (%), 2015",PCT_LACCESS_HISP15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hispanic ethnicity, low access to store (%), 2019",PCT_LACCESS_HISP19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Asian, low access to store, 2015",LACCESS_ASIAN15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Asian, low access to store, 2019",LACCESS_ASIAN19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Asain, low access to store (% change), 2015 -19",PCH_LACCESS_ASIAN_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Asian, low access to store (%), 2015",PCT_LACCESS_ASIAN15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Asian, low access to store (%), 2019",PCT_LACCESS_ASIAN19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"American Indian or Alaska Native, low access to store, 2015",LACCESS_AIAN15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"American Indian or Alaska Native, low access to store, 2019",LACCESS_AIAN19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"American Indian or Alaska Native, low access to store (% change), 2015 -19",PCH_LACCESS_AIAN_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"American Indian or Alaska Native, low access to store (%), 2015",PCT_LACCESS_AIAN15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"American Indian or Alaska Native, low access to store (%), 2019",PCT_LACCESS_AIAN19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hawaiian or Pacific Islander, low access to store, 2015",LACCESS_HOPI15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hawaiian or Pacific Islander, low access to store, 2019",LACCESS_HOPI19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hawaiian or Pacific Islander, low access to store (% change), 2015 -19",PCH_LACCESS_HOPI_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hawaiian or Pacific Islander, low access to store (%), 2015",PCT_LACCESS_HOPI15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Hawaiian or Pacific Islander, low access to store (%), 2019",PCT_LACCESS_HOPI19,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Multiracial, low access to store, 2015",LACCESS_MULTIR15,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Multiracial, low access to store, 2019",LACCESS_MULTIR19,Count
+Access and Proximity to Foodstore,ACCESS,Demographics,"Multiracial, low access to store (% change), 2015 -19",PCH_LACCESS_MULTIR_15_19,% change
+Access and Proximity to Foodstore,ACCESS,Demographics,"Multiracial, low access to store (%), 2015",PCT_LACCESS_MULTIR15,Percent
+Access and Proximity to Foodstore,ACCESS,Demographics,"Multiracial, low access to store (%), 2019",PCT_LACCESS_MULTIR19,Percent
+Store Availability,STORES,Grocery,"Grocery stores, 2016",GROC16,Count
+Store Availability,STORES,Grocery,"Grocery stores, 2020",GROC20,Count
+Store Availability,STORES,Grocery,"Grocery stores (% change), 2016-20",PCH_GROC_16_20,% change
+Store Availability,STORES,Grocery,"Grocery stores/1,000 pop, 2016",GROCPTH16,"# per 1,000 pop"
+Store Availability,STORES,Grocery,"Grocery stores/1,000 pop, 2020",GROCPTH20,"# per 1,000 pop"
+Store Availability,STORES,Grocery,"Grocery stores/1,000 pop (% change), 2016-20",PCH_GROCPTH_16_20,% change
+Store Availability,STORES,Supercenters,"Supercenters & club stores, 2016",SUPERC16,Count
+Store Availability,STORES,Supercenters,"Supercenters & club stores, 2020",SUPERC20,Count
+Store Availability,STORES,Supercenters,"Supercenters & club stores (% change), 2016-20",PCH_SUPERC_16_20,% change
+Store Availability,STORES,Supercenters,"Supercenters & club stores/1,000 pop, 2016",SUPERCPTH16,"# per 1,000 pop"
+Store Availability,STORES,Supercenters,"Supercenters & club stores/1,000 pop, 2020",SUPERCPTH20,"# per 1,000 pop"
+Store Availability,STORES,Supercenters,"Supercenters & club stores/1,000 pop (% change), 2016-20",PCH_SUPERCPTH_16_20,% change
+Store Availability,STORES,Convenience,"Convenience stores, 2016",CONVS16,Count
+Store Availability,STORES,Convenience,"Convenience stores, 2020",CONVS20,Count
+Store Availability,STORES,Convenience,"Convenience stores (% change), 2016-20",PCH_CONVS_16_20,% change
+Store Availability,STORES,Convenience,"Convenience stores/1,000 pop, 2016",CONVSPTH16,"# per 1,000 pop"
+Store Availability,STORES,Convenience,"Convenience stores/1,000 pop, 2020",CONVSPTH20,"# per 1,000 pop"
+Store Availability,STORES,Convenience,"Convenience stores/1,000 pop (% change), 2016-20",PCH_CONVSPTH_16_20,% change
+Store Availability,STORES,Specialized,"Specialized food stores, 2016",SPECS16,Count
+Store Availability,STORES,Specialized,"Specialized food stores, 2020",SPECS20,Count
+Store Availability,STORES,Specialized,"Specialized food stores (% change), 2016-20",PCH_SPECS_16_20,% change
+Store Availability,STORES,Specialized,"Specialized food stores/1,000 pop, 2016",SPECSPTH16,"# per 1,000 pop"
+Store Availability,STORES,Specialized,"Specialized food stores/1,000 pop, 2020",SPECSPTH20,"# per 1,000 pop"
+Store Availability,STORES,Specialized,"Specialized food stores/1,000 pop (% change), 2016-20",PCH_SPECSPTH_16_20,% change
+Store Availability,STORES,Specialized,"Dollar stores, 2020",DS20,Count
+Store Availability,STORES,Specialized,"Dollar stores/1,000 pop, 2020",DSPTH20,"# per 1,000 pop"
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores, 2017",SNAPS17,Count
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores, 2023",SNAPS23,Count
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores (% change), 2017-23",PCH_SNAPS_17_23,% change
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores/1,000 pop, 2017",SNAPSPTH17,"# per 1,000 pop"
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores/1,000 pop, 2023",SNAPSPTH23,"# per 1,000 pop"
+Store Availability,STORES,SNAP-authorized,"SNAP-authorized stores/1,000 pop (% change), 2017-23",PCH_SNAPSPTH_17_23,% change
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores, 2016",WICS16,Count
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores, 2022",WICS22,Count
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores (% change), 2016-22",PCH_WICS_16_22,% change
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores/1,000 pop, 2016",WICSPTH16,"# per 1,000 pop"
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores/1,000 pop, 2022",WICSPTH22,"# per 1,000 pop"
+Store Availability,STORES,WIC-authorized,"WIC-authorized stores/1,000 pop (% change), 2016-22",PCH_WICSPTH_16_22,% change
+Restaurant Availability ,RESTAURANTS,Fast-food,"Fast-food restaurants, 2016",FFR16,Count
+Restaurant Availability,RESTAURANTS,Fast-food,"Fast-food restaurants, 2020",FFR20,Count
+Restaurant Availability,RESTAURANTS,Fast-food,"Fast-food restaurants (% change), 2016-20",PCH_FFR_16_20,% change
+Restaurant Availability,RESTAURANTS,Fast-food,"Fast-food restaurants/1,000 pop, 2016",FFRPTH16,"# per 1,000 pop"
+Restaurant Availability,RESTAURANTS,Fast-food,"Fast-food restaurants/1,000 pop, 2020",FFRPTH20,"# per 1,000 pop"
+Restaurant Availability,RESTAURANTS,Fast-food,"Fast-food restaurants/1,000 pop (% change), 2016-20",PCH_FFRPTH_16_20,% change
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants, 2016",FSR16,Count
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants, 2020",FSR20,Count
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants (% change), 2016-20",PCH_FSR_16_20,% change
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants/1,000 pop, 2016",FSRPTH16,Count
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants/1,000 pop, 2020",FSRPTH20,Count
+Restaurant Availability,RESTAURANTS,Full-service,"Full-service restaurants/1,000 pop (% change), 2016-20",PCH_FSRPTH_16_20,% change
+Food Assistance,ASSISTANCE,SNAP,"SNAP redemptions/SNAP-authorized stores, 2017",REDEMP_SNAPS17,Dollars/store
+Food Assistance,ASSISTANCE,SNAP,"SNAP redemptions/SNAP-authorized stores, 2023",REDEMP_SNAPS23,Dollars/store
+Food Assistance,ASSISTANCE,SNAP,"SNAP redemptions/SNAP-authorized stores (% change), 2017-23",PCH_REDEMP_SNAPS_17_23,% change
+Food Assistance,ASSISTANCE,SNAP,"SNAP participants (% pop), 2017*",PCT_SNAP17,Percent
+Food Assistance,ASSISTANCE,SNAP,"SNAP participants (% pop), 2022*",PCT_SNAP22,Percent
+Food Assistance,ASSISTANCE,SNAP,"SNAP participants (change % pop), 2017-22*",PCH_SNAP_17_22,Percentage points
+Food Assistance,ASSISTANCE,SNAP,"SNAP benefits per capita, 2017",PC_SNAPBEN17,Dollars/capita
+Food Assistance,ASSISTANCE,SNAP,"SNAP benefits per capita, 2022",PC_SNAPBEN22,Dollars/capita
+Food Assistance,ASSISTANCE,SNAP,"SNAP benefits per capita (% change), 2017-22",PCH_PC_SNAPBEN_17_22,% change
+Food Assistance,ASSISTANCE,SNAP,"SNAP participants (% eligible pop), 2016*",SNAP_PART_RATE16,Percent
+Food Assistance,ASSISTANCE,SNAP,"SNAP participants (% eligible pop), 2019*",SNAP_PART_RATE19,Percent
+Food Assistance,ASSISTANCE,SNAP,"SNAP online application, 2016*",SNAP_OAPP16,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP online application, 2020*",SNAP_OAPP20,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP Combined Application Project , 2016*",SNAP_CAP16,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP Combined Application Project , 2020*",SNAP_CAP20,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP Broad-based Categorical Eligibility, 2016*",SNAP_BBCE16,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP Broad-based Categorical Eligibility, 2020*",SNAP_BBCE20,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP simplified reporting, 2016*",SNAP_REPORTSIMPLE16,Classification
+Food Assistance,ASSISTANCE,SNAP,"SNAP simplified reporting, 2020*",SNAP_REPORTSIMPLE20,Classification
+Food Assistance,ASSISTANCE,National School Lunch Program,"National School Lunch Program participants (% children), 2017*",PCT_NSLP17,Percent
+Food Assistance,ASSISTANCE,National School Lunch Program,"National School Lunch Program participants (% children), 2021*",PCT_NSLP21,Percent
+Food Assistance,ASSISTANCE,National School Lunch Program,"National School Lunch Program participants (change % children), 2017-21*",PCH_NSLP_17_21,Percentage points
+Food Assistance,ASSISTANCE,National School Lunch Program,"Students eligible for free lunch (%), 2015",PCT_FREE_LUNCH15,Percent
+Food Assistance,ASSISTANCE,National School Lunch Program,"Students eligible for reduced-price lunch (%), 2015",PCT_REDUCED_LUNCH15,Percent
+Food Assistance,ASSISTANCE,School Breakfast Program,"School Breakfast Program participants (% children), 2017*",PCT_SBP17,Percent
+Food Assistance,ASSISTANCE,School Breakfast Program,"School Breakfast Program participants (% children), 2021*",PCT_SBP21,Percent
+Food Assistance,ASSISTANCE,School Breakfast Program,"School Breakfast Program participants (change % children), 2017-21*",PCH_SBP_17_21,Percentage points
+Food Assistance,ASSISTANCE,Summer Food Service Program,"Summer Food Service Program participants (% children), 2017*",PCT_SFSP17,Percent
+Food Assistance,ASSISTANCE,Summer Food Service Program,"Summer Food Service Program participants (% children), 2021*",PCT_SFSP21,Percent
+Food Assistance,ASSISTANCE,Summer Food Service Program,"Summer Food Service Program participants (change % children), 2017-21*",PCH_SFSP_17_21,Percentage points
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions per capita, 2016",PC_WIC_REDEMP16,Dollars/capita
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions per capita, 2022",PC_WIC_REDEMP22,Dollars/capita
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions per capita (% change), 2016-22",PCH_PC_WIC_REDEMP_16_22,% change
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions/WIC-authorized stores, 2016",REDEMP_WICS16,Dollars/store
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions/WIC-authorized stores, 2022",REDEMP_WICS22,Dollars/store
+Food Assistance,ASSISTANCE,WIC,"WIC redemptions/WIC-authorized stores (% change), 2016-22",PCH_REDEMP_WICS_16_22,% change
+Food Assistance,ASSISTANCE,WIC,"WIC participants (% pop), 2017*",PCT_WIC17,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC participants (% pop), 2021*",PCT_WIC21,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC participants (change % pop), 2017-21*",PCH_WIC_17_21,Percentage points
+Food Assistance,ASSISTANCE,WIC,"WIC infant and children participants (% infant & children), 2016*",PCT_WICINFANTCHILD16,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC infant and children participants (% infant & children), 2021*",PCT_WICINFANTCHILD21,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC infant and children participants (change % infant & children), 2016-21*",PCH_WICINFANTCHILD_16_21,Percentage points
+Food Assistance,ASSISTANCE,WIC,"WIC women participants (% women), 2016*",PCT_WICWOMEN16,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC women participants (% women), 2021*",PCT_WICWOMEN21,Percent
+Food Assistance,ASSISTANCE,WIC,"WIC women participants (change % women), 2016-21*",PCH_WICWOMEN_16_21,Percentage points
+Food Assistance,ASSISTANCE,Child & Adult Care,"Child & Adult Care (% pop), 2017*",PCT_CACFP17,Percent
+Food Assistance,ASSISTANCE,Child & Adult Care,"Child & Adult Care (% pop), 2021*",PCT_CACFP21,Percent
+Food Assistance,ASSISTANCE,Child & Adult Care,"Child & Adult Care (change % pop), 2012-17*",PCH_CACFP_17_21,Percentage points
+Food Assistance,ASSISTANCE,FDPIR,"FDPIR Sites, 2012",FDPIR12,Count
+Food Assistance,ASSISTANCE,FDPIR,"FDPIR Sites, 2015",FDPIR15,Count
+Food Assistance,ASSISTANCE,FDPIR,"FDPIR Sites, 2012-15",PCH_FDPIR_12_15,Count
+Food Assistance,ASSISTANCE,Non-USDA,"Food Banks, 2018",FOOD_BANKS18,Count
+Food Assistance,ASSISTANCE,Non-USDA,"Food Banks, 2021",FOOD_BANKS21,Count
+Food Assistance,ASSISTANCE,Non-USDA,"Food Banks (% change), 2018 - 21",PCH_FOOD_BANKS_18_21,% change
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household food insecurity (%, three-year average), 2018-20*",FOODINSEC_18_20,Percent
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household food insecurity (%, three-year average), 2021-23*",FOODINSEC_21_23,Percent
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household food insecurity (change %),2018-20 to 2021-23*",CH_FOODINSEC_20_23,Percentage points
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household very low food security (%, three-year average), 2018-20*",VLFOODSEC_18_20,Percent
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household very low food security (%, three-year average), 2021-23*",VLFOODSEC_21_23,Percent
+State Food Insecurity,INSECURITY,State Food Insecurity,"Household very low food security (change %), 2018-20 to 2021-23*",CH_VLFOODSEC_20_23,Percentage points
+Food Taxes,PRICES_TAXES,Sales Tax,"Soda sales tax, retail stores, 2014*",SODATAX_STORES14,Percent
+Food Taxes,PRICES_TAXES,Sales Tax,"Soda sales tax, vending, 2014*",SODATAX_VENDM14,Percent
+Food Taxes,PRICES_TAXES,Sales Tax,"Chip & pretzel sales tax, retail stores, 2014*",CHIPSTAX_STORES14,Percent
+Food Taxes,PRICES_TAXES,Sales Tax,"Chip & pretzel sales tax, vending, 2014*",CHIPSTAX_VENDM14,Percent
+Food Taxes,PRICES_TAXES,Sales Tax,"General food sales tax, retail stores, 2014*",FOOD_TAX14,Percent
+Local Foods,LOCAL,Direct Sales,"Farms with direct sales, 2012",DIRSALES_FARMS12,Count
+Local Foods,LOCAL,Direct Sales,"Farms with direct sales, 2017",DIRSALES_FARMS17,Count
+Local Foods,LOCAL,Direct Sales,"Farms with direct sales (% change), 2012 - 17",PCH_DIRSALES_FARMS_12_17,% change
+Local Foods,LOCAL,Direct Sales,"Farms with direct sales (%), 2012",PCT_LOCLFARM12,Percent
+Local Foods,LOCAL,Direct Sales,"Farms with direct sales (%), 2017",PCT_LOCLFARM17,Percent
+Local Foods,LOCAL,Direct Sales,"Direct farm sales (%), 2012",PCT_LOCLSALE12,Percent
+Local Foods,LOCAL,Direct Sales,"Direct farm sales (%), 2017",PCT_LOCLSALE17,Percent
+Local Foods,LOCAL,Direct Sales,"Direct farm sales, 2012",DIRSALES12,"1,000 dollars"
+Local Foods,LOCAL,Direct Sales,"Direct farm sales, 2017",DIRSALES17,"1,000 dollars"
+Local Foods,LOCAL,Direct Sales,"Direct farm sales (% change), 2012 - 17",PCH_DIRSALES_12_17,% change
+Local Foods,LOCAL,Direct Sales,"Direct farm sales per capita, 2012",PC_DIRSALES12,Dollars
+Local Foods,LOCAL,Direct Sales,"Direct farm sales per capita, 2017",PC_DIRSALES17,Dollars
+Local Foods,LOCAL,Direct Sales,"Direct farm sales per capita (% change), 2012 - 17",PCH_PC_DIRSALES_12_17,% change
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets, 2013",FMRKT13,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets, 2018",FMRKT18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets (% change), 2013-18",PCH_FMRKT_13_18,% change
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets/1,000 pop, 2013",FMRKTPTH13,"# per 1,000 pop"
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets/1,000 pop, 2018",FMRKTPTH18,"# per 1,000 pop"
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets/1,000 pop (% change), 2013-18",PCH_FMRKTPTH_13_18,% change
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting SNAP, 2018",FMRKT_SNAP18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting SNAP (%), 2018",PCT_FMRKT_SNAP18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting WIC, 2018",FMRKT_WIC18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting WIC (%), 2018",PCT_FMRKT_WIC18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting WIC Cash, 2018",FMRKT_WICCASH18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting WIC Cash (%), 2018",PCT_FMRKT_WICCASH18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting SFMNP, 2018",FMRKT_SFMNP18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting SFMNP (%), 2018",PCT_FMRKT_SFMNP18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting credit cards, 2018",FMRKT_CREDIT18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report accepting credit cards (%), 2018",PCT_FMRKT_CREDIT18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling fruit & vegetables, 2018",FMRKT_FRVEG18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling fruit & vegetables (%), 2018",PCT_FMRKT_FRVEG18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling animal products, 2018",FMRKT_ANMLPROD18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling animal products (%), 2018",PCT_FMRKT_ANMLPROD18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling baked/prepared food products, 2018",FMRKT_BAKED18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling baked/prepared food products (%), 2018",PCT_FMRKT_BAKED18,Percent
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling other food products, 2018",FMRKT_OTHERFOOD18,Count
+Local Foods,LOCAL,Farmers' Markets,"Farmers' markets that report selling other food products (%), 2018",PCT_FMRKT_OTHERFOOD18,Percent
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable farms, 2012",VEG_FARMS12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable farms, 2017",VEG_FARMS17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable farms (% change), 2012 - 17",PCH_VEG_FARMS_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested, 2012",VEG_ACRES12,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested, 2017",VEG_ACRES17,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested (% change), 2012 - 17",PCH_VEG_ACRES_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested/1,000 pop, 2012",VEG_ACRESPTH12,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested/1,000 pop, 2017",VEG_ACRESPTH17,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested/1,000 pop (% change), 2012 - 17",PCH_VEG_ACRESPTH_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Farms with vegetables harvested for fresh market, 2012",FRESHVEG_FARMS12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Farms with vegetables harvested for fresh market, 2017",FRESHVEG_FARMS17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Farms with vegetables harvested for fresh market (% change), 2012 - 17",PCH_FRESHVEG_FARMS_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market, 2012",FRESHVEG_ACRES12,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market, 2017",FRESHVEG_ACRES17,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market (% change), 2012 - 17",PCH_FRESHVEG_ACRES_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market/1,000 pop, 2012",FRESHVEG_ACRESPTH12,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market/1,000 pop, 2017",FRESHVEG_ACRESPTH17,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Vegetable acres harvested for fresh market/1,000 pop (% change), 2012 - 17",PCH_FRESHVEG_ACRESPTH_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard farms, 2012",ORCHARD_FARMS12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard farms, 2017",ORCHARD_FARMS17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard farms (% change), 2012 - 17",PCH_ORCHARD_FARMS_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres, 2012",ORCHARD_ACRES12,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres, 2017",ORCHARD_ACRES17,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres (% change), 2012 - 17",PCH_ORCHARD_ACRES_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres/1,000 pop, 2012",ORCHARD_ACRESPTH12,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres/1,000 pop, 2017",ORCHARD_ACRESPTH17,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Orchard acres/1,000 pop (% change), 2012 - 17",PCH_ORCHARD_ACRESPTH_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry farms, 2012",BERRY_FARMS12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry farms, 2017",BERRY_FARMS17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry farms (% change), 2012 - 17",PCH_BERRY_FARMS_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres, 2012",BERRY_ACRES12,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres, 2017",BERRY_ACRES17,Acres
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres (% change), 2012 - 17",PCH_BERRY_ACRES_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres/1,000 pop, 2012",BERRY_ACRESPTH12,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres/1,000 pop, 2017",BERRY_ACRESPTH17,"Acres/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Berry acres/1,000 pop (% change), 2012 - 17",PCH_BERRY_ACRESPTH_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Small slaughterhouse facilities, 2012",SLHOUSE12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Small slaughterhouse facilities, 2017",SLHOUSE17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Small slaughterhouse facilities (% change), 2012 - 17",PCH_SLHOUSE_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse vegetable and fresh herb farms, 2012",GHVEG_FARMS12,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse vegetable and fresh herb farms, 2017",GHVEG_FARMS17,Count
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse vegetable and fresh herb farms (% change), 2012 - 17",PCH_GHVEG_FARMS_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet, 2012",GHVEG_SQFT12,Sq ft
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet, 2017",GHVEG_SQFT17,Sq ft
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet (% change), 2012 - 17",PCH_GHVEG_SQFT_12_17,% change
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet/1,000 pop, 2012",GHVEG_SQFTPTH12,"Sq ft/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet/1,000 pop, 2017",GHVEG_SQFTPTH17,"Sq ft/1,000 pop"
+Local Foods,LOCAL,Farms & Crop Acreage,"Greenhouse veg and fresh herb sq feet/1,000 pop (% change), 2012 - 17",PCH_GHVEG_SQFTPTH_12_17,% change
+Local Foods,LOCAL,Other Local Food Outlets,"Food hubs, 2023",FOODHUB23,Count
+Local Foods,LOCAL,Other Local Food Outlets,"CSA farms, 2023",CSA23,Count
+Local Foods,LOCAL,Other Local Food Outlets,"On-Farm Markets, 2023",ONFARM_MARKET23,Count
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism operations, 2012",AGRITRSM_OPS12,Count
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism operations, 2017",AGRITRSM_OPS17,Count
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism operations (% change), 2012 - 17",PCH_AGRITRSM_OPS_12_17,% change
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism receipts, 2012",AGRITRSM_RCT12,Dollars
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism receipts, 2017",AGRITRSM_RCT17,Dollars
+Local Foods,LOCAL,Other Local Food Outlets,"Agritourism receipts (% change), 2012 - 17",PCH_AGRITRSM_RCT_12_17,% change
+Local Foods,LOCAL,Other Local Food Outlets,"Farm to school program, 2019",FARM_TO_SCHOOL19,Classification
+Health and Physical Activity,HEALTH,Health,"Adult diabetes rate, 2015",PCT_DIABETES_ADULTS15,Percent
+Health and Physical Activity,HEALTH,Health,"Adult diabetes rate, 2019",PCT_DIABETES_ADULTS19,Percent
+Health and Physical Activity,HEALTH,Health,"Adult obesity rate, 2017*",PCT_OBESE_ADULTS17,Percent
+Health and Physical Activity,HEALTH,Health,"Adult obesity rate, 2022*",PCT_OBESE_ADULTS22,Percent
+Health and Physical Activity,HEALTH,Physical Activity,"High schoolers physically active (%), 2021*",PCT_HSPA21,Percent
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities, 2016",RECFAC16,Count
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities, 2020",RECFAC20,Count
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities (% change), 2016-20",PCH_RECFAC_16_20,% change
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities/1,000 pop, 2016",RECFACPTH16,"# per 1,000 pop"
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities/1,000 pop, 2020",RECFACPTH20,"# per 1,000 pop"
+Health and Physical Activity,HEALTH,Physical Activity,"Recreation & fitness facilities/1,000 pop (% change), 2016-20",PCH_RECFACPTH_16_20,% change
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% White, 2020",PCT_NHWHITE20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Black, 2020",PCT_NHBLACK20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Hispanic, 2020",PCT_HISP20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Asian, 2020",PCT_NHASIAN20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% American Indian or Alaska Native, 2020",PCT_NHNA20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Hawaiian or Pacific Islander, 2020",PCT_NHPI20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Other Race, 2020",PCT_NHOR20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Two or More Races, 2020",PCT_NHTMR20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Population 65 years or older, 2020",PCT_65OLDER20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Race & Age,"% Population under age 18, 2020",PCT_18YOUNGER20,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Median household income, 2021",MEDHHINC21,Dollars
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Poverty rate, 2021",POVRATE21,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Deep poverty rate, 2021",DEEPPOVRATE21,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Persistent-poverty counties, 2017-21",PERPOV17_21,Legend
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Child poverty rate, 2021",CHILDPOVRATE21,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Income Level,"Deep child poverty rate, 2021",DEEPCHILDPOVRATE21,Percent
+Socioeconomic Characteristics,SOCIOECONOMIC,Other,"Metro/nonmetro counties, 2023",METRO23,Legend
+Socioeconomic Characteristics,SOCIOECONOMIC,Other,"Population-loss counties, 2015",POPLOSS15,Legend

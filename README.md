@@ -1,0 +1,146 @@
+# Food Environment Atlas – PostgreSQL + Docker starter
+
+This folder lets each team member create the same local PostgreSQL database from the supplied Excel workbook.
+
+## What is included
+
+- `data/`: CSV exports of the nine subject-area sheets, plus the variable dictionary.
+- `sql/init.sql`: creates the PostgreSQL tables and imports the CSV files automatically.
+- `docker-compose.yml`: starts PostgreSQL 16 in Docker.
+- The source workbook is not modified.
+
+## Important data preparation notes
+
+- The source workbook's data-sheet headers are on Excel row 2, so the exports use that row as the header.
+- FIPS is stored as text with five digits (for example, `01001`) so leading zeroes are preserved.
+- The nine subject areas remain separate tables. Use `fips` to join county-level records.
+- The LOCAL sheet contains five Alaska area-level rows without FIPS values. They are retained with blank `fips` values; the LOCAL table therefore does not use FIPS as its primary key.
+- Values such as `-9999` are preserved exactly as supplied. Check the Atlas documentation/data dictionary before treating them as ordinary numeric values or converting them to NULL.
+- `variable_list.csv` is loaded into `atlas.variable_list`.
+
+## Before you start
+
+Install **Docker Desktop** for your operating system and open it. You do not need to install PostgreSQL separately.
+
+## Start the database
+
+Open Terminal (Mac) or PowerShell (Windows), move into this folder, and run:
+
+```bash
+docker compose up -d
+```
+
+The first run downloads the PostgreSQL image, creates the database, creates the tables, and imports the CSV files. It may take a few minutes.
+
+Check that it started:
+
+```bash
+docker compose ps
+```
+
+See the startup logs:
+
+```bash
+docker compose logs postgres
+```
+
+## Connect to the database
+
+Use a database client such as **DBeaver** or **pgAdmin**, or use the command line.
+
+Connection details for this local development setup:
+
+| Setting | Value |
+|---|---|
+| Host | `localhost` |
+| Port | `5432` |
+| Database | `food_atlas` |
+| Username | `atlas_user` |
+| Password | `atlas_password` |
+
+These are local development credentials only. Do not expose this database port publicly or use this password for a production/shared internet-facing database.
+
+## Try a few queries
+
+List the tables:
+
+```sql
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'atlas'
+ORDER BY table_name;
+```
+
+Count records:
+
+```sql
+SELECT COUNT(*) FROM atlas.access;
+SELECT COUNT(*) FROM atlas.stores;
+SELECT COUNT(*) FROM atlas.restaurants;
+```
+
+Look up a county (FIPS `01001` is Autauga County, Alabama):
+
+```sql
+SELECT fips, state, county, laccess_pop15, laccess_pop19
+FROM atlas.access
+WHERE fips = '01001';
+```
+
+Join access and store information:
+
+```sql
+SELECT
+    a.fips,
+    a.state,
+    a.county,
+    a.laccess_pop19,
+    s.groc20
+FROM atlas.access AS a
+JOIN atlas.stores AS s USING (fips)
+LIMIT 20;
+```
+
+## Stop and restart
+
+Stop the database without deleting its data:
+
+```bash
+docker compose stop
+```
+
+Start it again:
+
+```bash
+docker compose start
+```
+
+Or stop and remove the container (the database volume remains):
+
+```bash
+docker compose down
+```
+
+## Rebuild from scratch
+
+The import script runs only when PostgreSQL initializes an empty data volume. If you change the CSV files or `sql/init.sql` and want to re-import from scratch, run:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+**Warning:** `docker compose down -v` deletes the local database volume. Use it only if you are happy to rebuild the database from the CSV files.
+
+## How to share with your team
+
+1. Put this entire folder in your team's private GitHub repository (or your approved shared project space).
+2. Each teammate downloads/clones the repository.
+3. Each teammate installs Docker Desktop and runs `docker compose up -d`.
+4. Everyone connects to their own local copy using the same connection settings above.
+
+Share the CSVs, SQL, and Docker Compose file—not a copy of your local Docker database volume.
+
+## Suggested next step
+
+Once your team agrees on the table names and whether any additional cleaning is required, commit this folder to the team's repository. Keep the original Excel workbook as the untouched source file.
