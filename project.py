@@ -8,15 +8,22 @@ Steps:
     1. Query USDA Food Environment Atlas tables from PostgreSQL into
        Pandas with pd.read_sql() (no manual CSV exports).
     2. Pull Census County Business Patterns (CBP) grocery data (NAICS
-       445110) from the Census API and stage it in the database.
+       445110, county totals only) from the Census API and stage it in the
+       keyed atlas.cbp_grocery_2023 table.
     3. Clean, de-duplicate, merge (LEFT JOIN from USDA), engineer features.
-    4. Score and rank counties; produce diagnostic and business charts.
+    4. Score all 254 counties on six need measures, rank them, and test the
+       ranking with an alternative weighting; produce diagnostic and
+       business charts.
 
 Run:
     pip install pandas sqlalchemy psycopg2-binary requests matplotlib seaborn
-    export CENSUS_API_KEY=your_free_key   # https://api.census.gov/data/key_signup.html
-    python project.py
+    psql ... -f sql/02_keys_and_cbp.sql   (once; creates keys + CBP table)
+    python food_access_pipeline.py
 Optional: set DATABASE_URL to override the default local Docker database.
+Optional: set CENSUS_API_KEY (used if present; recommended by Census).
+
+Column names follow the Food Environment Atlas codebook. The newest year
+available for each measure (e.g. groc20) is detected automatically.
 """
 
 import os
@@ -24,7 +31,6 @@ import re
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import requests
 import seaborn as sns
@@ -35,6 +41,7 @@ STATE_ABBR = "TX"
 STATE_FIPS = "48"
 OUTPUT_DIR = Path("figures")
 CBP_URL = "https://api.census.gov/data/2023/cbp"
+CBP_TABLE = "cbp_grocery_2023"
 GROCERY_NAICS = "445110"
 
 # (table, column prefix, required?) -- newest year suffix auto-detected.
@@ -42,29 +49,33 @@ MEASURES = [
     ("access", "laccess_pop", True),
     ("access", "pct_laccess_pop", True),
     ("access", "laccess_lowi", True),
-    ("access", "laccess_hhnv", False),
-    ("access", "laccess_snap", False),
-    ("stores", "groc", False),
-    ("stores", "grocpth", False),
+    ("access", "pct_laccess_lowi", True),
+    ("access", "pct_laccess_hhnv", True),
+    ("stores", "groc", True),
+    ("stores", "grocpth", True),
     ("socioeconomic", "povrate", False),
     ("socioeconomic", "medhhinc", False),
 ]
 SENTINELS = [-9999, -8888]  # Atlas "not available" codes
 
-# Need indicators and weights for the priority score. Counts capture the
-# size of the problem; shares/rates stop big counties winning on size alone.
-# A county missing an indicator is scored on the indicators it has.
-NEED_WEIGHTS = {
-    "laccess_pop": 1.0,        # residents with low access (count)
-    "laccess_lowi": 1.0,       # low-income, low-access residents (count)
-    "pct_laccess_pop": 1.0,    # share of residents with low access
-    "lowi_share": 1.0,         # low-income low-access share of population
-    "hhnv_share": 1.0,         # no-vehicle low-access share of population
-    "low_store_density": 1.0,  # fewer stores per 1,000 = higher need
-}
+# The six need indicators in the priority score (higher = greater need).
+NEED_METRICS = [
+    "laccess_pop",        # low-access residents (count)
+    "laccess_lowi",       # low-income, low-access residents (count)
+    "pct_laccess_pop",    # low-access share of population
+    "pct_laccess_lowi",   # low-income, low-access share
+    "pct_laccess_hhnv",   # no-vehicle, low-access share
+    "low_store_density",  # grocery stores per 1,000, sign flipped
+]
+# Main score: equal weights. Sensitivity check: triple the weight on the
+# two low-income measures (count and share).
+BASE_WEIGHTS = {m: 1 for m in NEED_METRICS}
+ALT_WEIGHTS = {**BASE_WEIGHTS, "laccess_lowi": 3, "pct_laccess_lowi": 3}
 
-CBP_COLUMNS = ["fips", "establishments", "employees", "payroll_thousands",
-               "cbp_status"]
+# Access measures define who is in need, so a county without them cannot
+# be scored. (In the 2025 Atlas no Texas county is missing them.)
+CORE_ACCESS = ["laccess_pop", "laccess_lowi", "pct_laccess_pop",
+               "pct_laccess_lowi"]
 
 
 # ----------------------------------------------------------------------
@@ -117,69 +128,75 @@ def load_atlas(engine):
 # 2. Census CBP via API (nested JSON -> DataFrame)
 # ----------------------------------------------------------------------
 def fetch_cbp():
-    """Download Texas grocery (NAICS 445110) county rows from Census CBP.
+    """Download Texas grocery (NAICS 445110) county totals from Census CBP.
 
-    Tries several request variants and prints what the API returns, so a
-    failure is easy to diagnose. Returns None if every attempt fails.
+    EMPSZES=001 (all employment sizes) and LFO=001 (all legal forms)
+    request one total row per county. Without them the API can return a
+    row per size class, and a de-duplication step would keep an arbitrary
+    one. If the LFO filter is not accepted, retry with EMPSZES only.
     """
     key = os.environ.get("CENSUS_API_KEY")
-    if not key:
-        print("No CENSUS_API_KEY set. Get a free key at "
-              "https://api.census.gov/data/key_signup.html and run: "
-              "export CENSUS_API_KEY=your_key")
-    variants = [
-        ("NAICS2022", "NAME,ESTAB,EMP,PAYANN,EMP_N,NAICS2022"),
-        ("NAICS2022", "NAME,ESTAB,EMP,PAYANN,NAICS2022"),
-        ("NAICS2017", "NAME,ESTAB,EMP,PAYANN,NAICS2017"),
-    ]
-    for naics_var, fields in variants:
-        params = {
-            "get": fields,
-            "for": "county:*",
-            "in": f"state:{STATE_FIPS}",
-            naics_var: GROCERY_NAICS,
-        }
-        if key:
-            params["key"] = key
-        resp = requests.get(CBP_URL, params=params, timeout=60)
-        print(f"Census try {naics_var}: status {resp.status_code}, "
-              f"first 150 chars: {resp.text[:150]!r}")
-        if resp.ok and resp.text.strip().startswith("["):
-            rows = resp.json()  # list of lists; first row is the header
-            df = pd.DataFrame(rows[1:], columns=rows[0])
-            df = df.rename(columns={naics_var: "naics_code"})
-            if "EMP_N" not in df:
-                df["EMP_N"] = None
-            return df
-    print("Census data unavailable; continuing without it.")
-    return None
+    totals_filters = [{"EMPSZES": "001", "LFO": "001"}, {"EMPSZES": "001"}]
+    last_error = "no request sent"
+    for naics_var in ("NAICS2017", "NAICS2022"):  # variable name by vintage
+        for filters in totals_filters:
+            params = {
+                "get": f"NAME,ESTAB,EMP,PAYANN,EMP_N,{naics_var}",
+                "for": "county:*",
+                "in": f"state:{STATE_FIPS}",
+                naics_var: GROCERY_NAICS,
+                **filters,
+            }
+            if key:
+                params["key"] = key
+            resp = requests.get(CBP_URL, params=params, timeout=60)
+            if resp.ok and resp.text.strip():
+                rows = resp.json()  # list of lists; first row is the header
+                df = pd.DataFrame(rows[1:], columns=rows[0])
+                print(f"CBP: {len(df)} rows using {naics_var}, {filters}")
+                return df.rename(columns={naics_var: "naics_code"})
+            last_error = f"{resp.status_code} {resp.text[:200]}"
+    raise SystemExit(f"Census API request failed: {last_error}")
 
 
 def clean_cbp(raw):
-    """Build 5-char FIPS, cast text to numbers, flag suppressed cells."""
+    """Build 5-char FIPS, cast text to numbers, check one row per county."""
     df = raw.copy()
     df["fips"] = df["state"].str.zfill(2) + df["county"].str.zfill(3)
-    df = df.drop_duplicates(subset=["fips", "naics_code"])
+    # County 999 is CBP's "statewide" bucket, not a real county.
+    df = df[df["county"] != "999"]
+
+    exact = df.duplicated().sum()
+    df = df.drop_duplicates()
+    print(f"CBP exact duplicate rows removed: {exact}")
+    repeated = df["fips"].duplicated().sum()
+    if repeated:
+        raise SystemExit(f"{repeated} counties still have several CBP rows; "
+                         "the county-total filter did not apply.")
+
     for col in ("ESTAB", "EMP", "PAYANN"):
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-    # EMP_N is a noise/suppression flag; letter codes mean withheld values.
-    df["cbp_status"] = df["EMP_N"].apply(
-        lambda f: "suppressed" if isinstance(f, str) and f.strip()
-        and f.strip() not in ("0", "None") else "reported")
+        df[col] = pd.to_numeric(df[col], errors="coerce").astype("Int64")
+    # EMP_N is the noise flag on employment (G = low, H = moderate,
+    # J = high noise). The value is still reported, so keep the flag as
+    # metadata instead of treating the row as missing.
+    df["emp_noise_flag"] = df["EMP_N"].apply(
+        lambda f: f.strip() if isinstance(f, str) and f.strip() else None)
     df = df.rename(columns={"ESTAB": "establishments", "EMP": "employees",
                             "PAYANN": "payroll_thousands"})
-    return df[CBP_COLUMNS]
+    return df[["fips", "establishments", "employees", "payroll_thousands",
+               "emp_noise_flag"]]
 
 
-def empty_cbp():
-    """Empty CBP table with correct column types (used if the API fails)."""
-    return pd.DataFrame({
-        "fips": pd.Series(dtype=str),
-        "establishments": pd.Series(dtype=float),
-        "employees": pd.Series(dtype=float),
-        "payroll_thousands": pd.Series(dtype=float),
-        "cbp_status": pd.Series(dtype=str),
-    })
+def stage_cbp(engine, cbp):
+    """Replace the rows of the keyed CBP table, then read them back."""
+    table = f"{SCHEMA}.{CBP_TABLE}"
+    with engine.begin() as conn:
+        # TRUNCATE + append keeps the table's primary and foreign keys;
+        # if_exists="replace" would drop and recreate it without them.
+        conn.execute(text(f"TRUNCATE {table}"))
+        cbp.to_sql(CBP_TABLE, conn, schema=SCHEMA, if_exists="append",
+                   index=False)
+    return pd.read_sql(f"SELECT * FROM {table}", engine)
 
 
 # ----------------------------------------------------------------------
@@ -205,13 +222,7 @@ def wrangle_atlas(frames):
         df = df.drop_duplicates(subset="fips", keep="first")
         for col in df.columns.difference(["fips", "state", "county"]):
             df[col] = clean_numeric(df[col])
-        # Diagnose WHY values are missing: blank cells vs "n/a" codes.
-        texas = df[df["fips"].str.startswith(STATE_FIPS)]
-        for col in df.columns.difference(["fips", "state", "county"]):
-            n_code = texas[col].isin(SENTINELS).sum()
-            n_blank = texas[col].isna().sum()
-            print(f"  Texas {col}: {n_blank} blank, {n_code} coded n/a")
-        df = df.replace(SENTINELS, np.nan)
+        df = df.replace(SENTINELS, float("nan"))
         # Drop the year suffix so later code is year-agnostic.
         df.columns = [re.sub(r"\d{2}$", "", c) for c in df.columns]
         cleaned.append(df)
@@ -225,82 +236,78 @@ def wrangle_atlas(frames):
 
 
 def handle_missing(df, cbp):
-    """Diagnose gaps; LEFT JOIN CBP and flag why a county has no data."""
+    """Diagnose gaps, keep every county, flag missing store data, join CBP."""
     print("\nMissing share per column (Atlas):")
     print(df.isna().mean().sort_values(ascending=False).round(3))
 
-    # Only the access measures are required. Counties with missing store
-    # counts are KEPT and flagged: dropping them removed about half of
-    # Texas (mostly rural counties) and would bias the ranking.
-    core = ["laccess_pop", "laccess_lowi", "pct_laccess_pop"]
+    # Only counties missing the access measures themselves are dropped;
+    # imputing them would invent the quantity being ranked.
     before = len(df)
-    df = df.dropna(subset=core).copy()
-    print(f"Dropped {before - len(df)} counties missing core measures")
+    df = df.dropna(subset=CORE_ACCESS).copy()
+    print(f"Dropped {before - len(df)} counties missing access measures")
 
-    for col in ("groc", "grocpth", "laccess_hhnv"):
-        if col not in df:
-            df[col] = np.nan
-    df["stores_missing"] = df["grocpth"].isna()
-    print(f"Counties with missing store data (kept, flagged): "
-          f"{int(df['stores_missing'].sum())}")
+    # Store counts are NOT dropped or imputed. Dropping the ~half of
+    # counties coded -9999 (mostly rural) skewed the first ranking toward
+    # large urban counties, a selection bias. They stay in, flagged, and
+    # are scored on the measures they have.
+    df["store_data_missing"] = df["grocpth"].isna()
+    print(f"Counties with no store count (kept, flagged): "
+          f"{df['store_data_missing'].sum()}")
 
-    # No-vehicle counts: median-impute and flag the rows.
-    df["hhnv_imputed"] = df["laccess_hhnv"].isna()
-    df["laccess_hhnv"] = df["laccess_hhnv"].fillna(
-        df["laccess_hhnv"].median())
-
-    # LEFT JOIN keeps counties with no grocery establishments in Census.
+    # LEFT JOIN keeps counties with no grocery record in Census.
     df = pd.merge(df, cbp, on="fips", how="left")
-    df["cbp_status"] = df["cbp_status"].fillna("no_cbp_record")
+    df["cbp_status"] = df["establishments"].notna().map(
+        {True: "reported", False: "no_cbp_record"})
     # A missing CBP row is NOT assumed to be zero; counts stay NaN.
     return df
 
 
+def weighted_score(ranks, weights):
+    """Weighted mean of percentile ranks over the measures a county has.
+
+    Missing measures are left out of both the numerator and the
+    denominator, so a county is not penalized for a data gap.
+    """
+    w = pd.Series(weights)[ranks.columns]
+    total = ranks.mul(w).sum(axis=1, min_count=1)
+    used = ranks.notna().mul(w).sum(axis=1)
+    return total / used
+
+
 def engineer_features(df):
-    """Add population, shares, store density and a priority score."""
+    """Add population, density, per-store metrics and priority scores."""
     df = df.copy()
-    pct = df["pct_laccess_pop"].replace(0, np.nan) / 100
-    df["population"] = (df["laccess_pop"] / pct).round()
-    df["groc_per_1000"] = df["groc"] / df["population"] * 1000
-    df["lowi_share"] = df["laccess_lowi"] / df["population"] * 100
-    df["hhnv_share"] = df["laccess_hhnv"] / df["population"] * 100
-    # Lower density of stores = greater need (NaN stays NaN, not penalized).
+    # Estimated population = low-access residents / low-access share.
+    share = df["pct_laccess_pop"].where(df["pct_laccess_pop"] > 0) / 100
+    df["population"] = (df["laccess_pop"] / share).round()
+    # Lower density of stores = greater need, so flip the sign.
     df["low_store_density"] = -df["grocpth"]
     df["lowi_per_store"] = df["laccess_lowi"] / (df["groc"] + 1)
     df["payroll_per_estab"] = (df["payroll_thousands"]
                                / df["establishments"])
 
-    # Priority score: weighted mean percentile rank over available metrics.
-    ranks = df[list(NEED_WEIGHTS)].rank(pct=True)
-    df["priority_score"] = weighted_score(ranks, NEED_WEIGHTS)
+    ranks = df[NEED_METRICS].rank(pct=True)
+    df["n_measures"] = ranks.notna().sum(axis=1)
+    df["priority_score"] = weighted_score(ranks, BASE_WEIGHTS)
     df["priority_rank"] = df["priority_score"].rank(
         ascending=False, method="first").astype(int)
-
-    # Sensitivity check: triple the weight on low-income residents.
-    alt_weights = dict(NEED_WEIGHTS, laccess_lowi=3.0, lowi_share=3.0)
-    alt = weighted_score(ranks, alt_weights)
-    df["alt_rank"] = alt.rank(ascending=False, method="first").astype(int)
+    # Sensitivity check: triple weight on low-income measures.
+    df["alt_score"] = weighted_score(ranks, ALT_WEIGHTS)
+    df["alt_rank"] = df["alt_score"].rank(
+        ascending=False, method="first").astype(int)
     return df.sort_values("priority_rank")
-
-
-def weighted_score(ranks, weights):
-    """Weighted mean of rank columns, ignoring missing values."""
-    w = pd.Series(weights)
-    total = ranks.mul(w, axis=1).sum(axis=1)
-    available = ranks.notna().mul(w, axis=1).sum(axis=1)
-    return total / available
 
 
 # ----------------------------------------------------------------------
 # 4. Visualization
 # ----------------------------------------------------------------------
 def diagnostic_plots(df):
-    """Histogram and boxplots to check distributions and outliers."""
+    """Histograms and a boxplot to check distributions and outliers."""
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-    sns.histplot(df["groc_per_1000"].dropna(), bins=30, ax=axes[0])
+    sns.histplot(df["grocpth"].dropna(), bins=30, ax=axes[0])
     axes[0].set_title("Grocery stores per 1,000 residents")
-    sns.histplot(df["lowi_share"].dropna(), bins=30, ax=axes[1])
-    axes[1].set_title("Low-income, low-access share of population (%)")
+    sns.histplot(df["pct_laccess_lowi"], bins=30, ax=axes[1])
+    axes[1].set_title("Low-income, low-access share (%)")
     sns.boxplot(x=df["laccess_pop"], ax=axes[2])
     axes[2].set_title("Low-access population (outlier check)")
     fig.tight_layout()
@@ -319,11 +326,12 @@ def stakeholder_charts(df):
     fig.savefig(OUTPUT_DIR / "top10_priority_counties.png", dpi=200)
     plt.close(fig)
 
-    plot_df = df.dropna(subset=["grocpth"])
+    plotted = df.dropna(subset=["grocpth"])  # counties with a store count
     fig, ax = plt.subplots(figsize=(8, 5))
-    sns.scatterplot(data=plot_df, x="grocpth", y="lowi_share",
-                    hue=plot_df["priority_rank"] <= 10, alpha=0.7, ax=ax)
-    ax.set_title("Store availability vs. low-income, low-access share")
+    sns.scatterplot(data=plotted, x="grocpth", y="pct_laccess_lowi",
+                    hue=plotted["priority_rank"] <= 10, alpha=0.7, ax=ax)
+    ax.set_title("Store availability vs. low-income, low-access share "
+                 f"({len(plotted)} counties with a store count)")
     ax.set_xlabel("Grocery stores per 1,000 residents")
     ax.set_ylabel("Low-income, low-access share of population (%)")
     ax.legend(title="Top 10 priority")
@@ -349,27 +357,22 @@ def main():
     OUTPUT_DIR.mkdir(exist_ok=True)
     engine = get_engine()
     atlas = wrangle_atlas(load_atlas(engine))
-
-    raw_cbp = fetch_cbp()
-    if raw_cbp is not None:
-        cbp = clean_cbp(raw_cbp)
-        cbp.to_sql("cbp_grocery_2023", engine, schema=SCHEMA,
-                   if_exists="replace", index=False)  # stage in the database
-        cbp = pd.read_sql(f"SELECT * FROM {SCHEMA}.cbp_grocery_2023", engine)
-    else:
-        cbp = empty_cbp()
+    cbp = stage_cbp(engine, clean_cbp(fetch_cbp()))
 
     df = engineer_features(handle_missing(atlas, cbp))
     diagnostic_plots(df)
     stakeholder_charts(df)
 
     cols = ["priority_rank", "county", "population", "laccess_pop",
-            "pct_laccess_pop", "laccess_lowi", "lowi_share", "grocpth",
-            "stores_missing", "establishments", "cbp_status", "alt_rank"]
-    df.head(10)[cols].to_csv(OUTPUT_DIR / "top10_table.csv", index=False)
-    overlap = len(set(df.head(10)["county"])
-                  & set(df.nsmallest(10, "alt_rank")["county"]))
-    print(df.head(10)[cols].to_string(index=False))
+            "pct_laccess_pop", "laccess_lowi", "pct_laccess_lowi",
+            "grocpth", "establishments", "cbp_status", "n_measures",
+            "priority_score", "alt_rank"]
+    top10 = df.head(10)
+    top10[cols].to_csv(OUTPUT_DIR / "top10_table.csv", index=False)
+    df[cols].to_csv(OUTPUT_DIR / "all_counties_ranked.csv", index=False)
+    overlap = len(set(top10["fips"])
+                  & set(df.nsmallest(10, "alt_rank")["fips"]))
+    print(top10[cols].to_string(index=False))
     print(f"\nTop-10 overlap under alternative weights: {overlap}/10")
     print(df["cbp_status"].value_counts())
 
